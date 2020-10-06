@@ -12,7 +12,7 @@ async function onGet(request) {
 	if (path.startsWith('/~_~_gdindex/resources/')) {
 		const remain = path.replace('/~_~_gdindex/resources/', '')
 		const r = await fetch(
-			`https://raw.githubusercontent.com/maple3142/GDIndex/master/web/dist/${remain}`
+			`https://raw.githubusercontent.com/NyaMisty/GDIndex/master/web/dist/${remain}`
 		)
 		return new Response(r.body, {
 			headers: {
@@ -21,11 +21,14 @@ async function onGet(request) {
 			}
 		})
 	} else if (path === '/~_~_gdindex/drives') {
-		return new Response(JSON.stringify(await gd.listDrive()), {
+		/*return new Response(JSON.stringify(await gd.listDrive()), {
 			headers: {
 				'Content-Type': 'application/json'
 			}
-		})
+		})*/
+        return new Response(JSON.stringify({
+          drives: self.props.roots
+        }))
 	} else if (path.substr(-1) === '/' || path.startsWith('/~viewer')) {
 		return new Response(HTML, {
 			headers: {

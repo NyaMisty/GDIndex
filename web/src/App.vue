@@ -25,7 +25,7 @@
 						>
 							<v-list-item-title>{{
 								item.text
-							}}</v-list-item-title>
+							}}</v-list-item-title>`
 						</v-list-item>
 					</v-list>
 				</v-menu>
@@ -44,8 +44,14 @@
 				>
 			</v-toolbar-items>
 		</v-app-bar>
-
-		<v-content> <router-view /> </v-content>
+    <div>
+      <p>划水交流群933363822，目前录制了1300+个V的B站/油管/t台直播（2434/holo/vr/upd8/774等都录了，b站粉大于2w5的也都录了）</p>
+      <p>当天的录播文件夹为vtbrec，每天早上八点前结束的直播算为昨天的直播，请去对应日期的文件夹中寻找</p>
+      <p>找不到自家的录播可以加群问一下~ 下载较大的录播档或者希望预览的话推荐加群了解另一种访问方式，字幕组想要加速下载请加群联系群主~~</p>
+    </div>
+		<v-content>
+      <router-view />
+    </v-content>
 		<LoginDialog :cond="showAuthInput" />
 	</v-app>
 </template>
@@ -85,7 +91,8 @@ export default {
 		if (!ok) return
 
 		const { drives } = await api.get('/~_~_gdindex/drives').json()
-		this.drives = [{ text: this.$t('mainDrive'), value: 'root' }].concat(
+		//this.drives = [{ text: this.$t('mainDrive'), value: 'root' }].concat(
+    this.drives = [].concat(
 			drives.map(d => ({
 				value: d.id,
 				text: d.name
